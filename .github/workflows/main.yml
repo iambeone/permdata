@@ -23,3 +23,4 @@ jobs:
       uses: iambeone/pushtodigitalocean@master
       env:
         token:  ${{ secrets.DIGITAL_OCEAN_TOKEN }}
+        ports:  4000:4000
