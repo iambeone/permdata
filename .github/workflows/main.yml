@@ -19,3 +19,5 @@ jobs:
       run: npm install
     - name: Build image
       run: docker build -t dockerimage . && docker save | gzip > dockerimage.tgz
+    - name: push to do
+      uses: iambeone/pushtodigitalocean@master
