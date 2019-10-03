@@ -1,0 +1,6 @@
+{
+  "name": "lunietest",
+  "script": "npm",
+  "instances": "1",
+  "args": ["run", "start"]
+}
