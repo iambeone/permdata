@@ -22,4 +22,4 @@ jobs:
     - name: push to do
       uses: iambeone/pushtodigitalocean@master
       with:
-        token:  ${{ DIGITAL_OCEAN_TOKEN }}
+        token:  ${{ secrets.DIGITAL_OCEAN_TOKEN }}
