@@ -1,5 +1,5 @@
 {
-  "name": "lunietest",
+  "name": "lunietest_",
   "script": "npm",
   "instances": "1",
   "args": ["run", "start"]
