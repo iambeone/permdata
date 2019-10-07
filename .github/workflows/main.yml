@@ -23,7 +23,7 @@ jobs:
     - name: Push to Digital Ocean
       uses: iambeone/pushtodigitalocean@master
       env:
-        token:  ${{ secrets.MY_DIGITAL_OCEAN_TOKEN }}
+        token:  ${{ secrets.DIGITAL_OCEAN_TOKEN }}
         ports:  4000:4000
         image:  lunieapi
         file:  lunieapi.tgz
