@@ -9,8 +9,17 @@ jobs:
     name: Compile
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node_version }}
+      uses: actions/setup-node@v1
+      with:
+        version: ${{ matrix.node_version }}
+    - name: npm install
+      run: npm install
+    - name: Build image
+      run: docker build -t lunieapi . 
     - name: Save file
-      run: touch lunieapi.tgz
+      run: docker save lunieapi | gzip > lunieapi.tgz
     - name: prepare to push to Digital Ocean
       run: mkdir -p ~/.ssh && echo "${{ secrets.DO_PRIVATE_KEY }}"  | tr -d '\r' > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa && eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_rsa && ssh-keyscan -H ${{ secrets.DIGITAL_OCEAN_SERVER }} >> ~/.ssh/known_hosts
     - name: push to Digital Ocean
