@@ -3,7 +3,7 @@ name: Deploing1
 on:
   push:
     branches:
-      - test
+      - deploy
 jobs:
   test:
     name: Compile
