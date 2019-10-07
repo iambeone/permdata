@@ -1,4 +1,4 @@
-name: Update existing
+name: Update existing droplet
 
 on:
   push:
