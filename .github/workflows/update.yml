@@ -20,7 +20,9 @@ jobs:
       run: docker build -t lunieapi . 
     - name: Save file
       run: docker save lunieapi | gzip > lunieapi.tgz
+    - name: prepare to push to Digital Ocean
+      run: mkdir -p ~/.ssh && echo "${{ secrets.DO_PRIVATE_KEY }}"  | tr -d '\r' > ~/.ssh/id_do_rsa && chmod 600 ~/.ssh/id_do_rsa && eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_do_rsa && ssh-keyscan -H $DIGITAL_OCEAN_SERVER >> ~/.ssh/known_hosts
     - name: push to Digital Ocean
-      run:  sshpass -p ${{ secrets.DIGITAL_OCEAN_ROOT_PASSWORD }} rsync -4 lunieapi.tgz root@${{ secrets.DIGITAL_OCEAN_SERVER }}:~/      
+      run:  rsync -4 lunieapi.tgz root@${{ secrets.DIGITAL_OCEAN_SERVER }}:~/      
     - name: Run on Digital Ocean
       run: ssh root:${{ secrets.DIGITAL_OCEAN_ROOT_PASSWORD }}@${{ secrets.DIGITAL_OCEAN_SERVER }} "docker image prune -a -f; docker load < lunieapi.tgz;docker container stop lunieapi; docker container run -d -p 4000:4000 lunieapi"
