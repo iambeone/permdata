@@ -23,6 +23,6 @@ jobs:
     - name: prepare to push to Digital Ocean
       run: mkdir -p ~/.ssh && echo "${{ secrets.DO_PRIVATE_KEY }}"  | tr -d '\r' > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa && eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_rsa && ssh-keyscan -H 157.245.113.238 >> ~/.ssh/known_hosts
     - name: push to Digital Ocean
-      run:  rsync -4 lunieapi.tgz root@$157.245.113.238:~/
+      run:  rsync -4 lunieapi.tgz root@157.245.113.238:~/
     - name: Run on Digital Ocean
       run: ssh root@157.245.113.238 "docker image prune -a -f; docker load < lunieapi.tgz;docker container stop lunieapi; docker container run -d -p 4000:4000 lunieapi"
