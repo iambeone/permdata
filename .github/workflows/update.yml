@@ -25,4 +25,4 @@ jobs:
     - name: push to Digital Ocean
       run:  rsync -4 lunieapi.tgz root@157.245.113.238:~/
     - name: Run on Digital Ocean
-      run: ssh root@157.245.113.238 "docker image prune -a -f; docker load < lunieapi.tgz;docker container stop lunieapi; docker container run -d -p 4000:4000 lunieapi"
+      run: ssh root@157.245.113.238 "docker image prune -a -f; docker load < lunieapi.tgz; docker container stop lunieapi; docker container prune; docker container run -d -p 4000:4000 --name lunieapi lunieapi"
