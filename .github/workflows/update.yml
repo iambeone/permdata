@@ -21,6 +21,6 @@ jobs:
     - name: Save file
       run: docker save lunieapi | gzip > lunieapi.tgz
     - name: push to Digital Ocean
-      run: rsync -4 lunieapi.tgz root:${{ secrets.DIGITAL_OCEAN_ROOT_PASSWORD }}@${{ secrets.DIGITAL_OCEAN_SERVER }}:~/      
+      run:  sshpass -p ${{ secrets.DIGITAL_OCEAN_ROOT_PASSWORD }} rsync -4 lunieapi.tgz root@${{ secrets.DIGITAL_OCEAN_SERVER }}:~/      
     - name: Run on Digital Ocean
       run: ssh root:${{ secrets.DIGITAL_OCEAN_ROOT_PASSWORD }}@${{ secrets.DIGITAL_OCEAN_SERVER }} "docker image prune -a -f; docker load < lunieapi.tgz;docker container stop lunieapi; docker container run -d -p 4000:4000 lunieapi"
