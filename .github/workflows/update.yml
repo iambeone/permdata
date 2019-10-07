@@ -1,0 +1,26 @@
+name: Update existing
+
+on:
+  push:
+    branches:
+      - update
+jobs:
+  test:
+    name: Compile
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node_version }}
+      uses: actions/setup-node@v1
+      with:
+        version: ${{ matrix.node_version }}
+    - name: npm install
+      run: npm install
+    - name: Build image
+      run: docker build -t lunieapi . 
+    - name: Save file
+      run: docker save lunieapi | gzip > lunieapi.tgz
+    - name: push to Digital Ocean
+      run: rsync -4 lunieapi.tgz root:${{ secrets.DIGITAL_OCEAN_ROOT_PASSWORD }}@${{ secrets.DIGITAL_OCEAN_SERVER }}:~/      
+    - name: Run on Digital Ocean
+      run: ssh root:${{ secrets.DIGITAL_OCEAN_ROOT_PASSWORD }}@${{ secrets.DIGITAL_OCEAN_SERVER }} "docker image prune -a -f; docker load < lunieapi.tgz;docker container stop lunieapi; docker container run -d -p 4000:4000 lunieapi"
