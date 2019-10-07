@@ -20,7 +20,7 @@ jobs:
       run: docker build -t lunieapi . 
     - name: Save image as file
       run: docker save lunieapi | gzip > lunieapi.tgz
-    - name: Push to Digital Ocean
+    - name: Push to Digital Ocean droplet
       uses: iambeone/pushtodigitalocean@master
       env:
         token:  ${{ secrets.DIGITAL_OCEAN_TOKEN }}
