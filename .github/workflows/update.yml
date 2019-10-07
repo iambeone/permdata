@@ -12,7 +12,7 @@ jobs:
     - name: Save file
       run: touch lunieapi.tgz
     - name: prepare to push to Digital Ocean
-      run: mkdir -p ~/.ssh && echo "${{ secrets.DO_PRIVATE_KEY }}"  | tr -d '\r' > ~/.ssh/id_do_rsa && chmod 600 ~/.ssh/id_do_rsa && eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_do_rsa && ssh-keyscan -H {{ secrets.DIGITAL_OCEAN_SERVER }} >> ~/.ssh/known_hosts
+      run: mkdir -p ~/.ssh && echo "${{ secrets.DO_PRIVATE_KEY }}"  | tr -d '\r' > ~/.ssh/id_do_rsa && chmod 600 ~/.ssh/id_do_rsa && eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_do_rsa && ssh-keyscan -H ${{ secrets.DIGITAL_OCEAN_SERVER }} >> ~/.ssh/known_hosts
     - name: push to Digital Ocean
       run:  rsync -4 lunieapi.tgz root@${{ secrets.DIGITAL_OCEAN_SERVER }}:~/      
     - name: Run on Digital Ocean
