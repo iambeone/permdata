@@ -18,9 +18,9 @@ jobs:
       run: npm install
     - name: Build image
       run: docker build -t lunieapi . 
-    - name: Save file
+    - name: Save image as file
       run: docker save lunieapi | gzip > lunieapi.tgz
-    - name: push to do
+    - name: Push to Digital Ocean
       uses: iambeone/pushtodigitalocean@master
       env:
         token:  ${{ secrets.MY_DIGITAL_OCEAN_TOKEN }}
