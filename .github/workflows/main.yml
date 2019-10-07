@@ -27,3 +27,5 @@ jobs:
         ports:  4000:4000
         image:  lunieapi
         file:  lunieapi.tgz
+        monitoring: true
+        fingerprint: ${{ secrets.DIGITAL_OCEAN_FINGERPRINT }}
