@@ -26,7 +26,7 @@ jobs:
         token:  ${{ secrets.DIGITAL_OCEAN_TOKEN }}
         ports:  4000:4000
         image:  lunieapi
-        name: Lunie-API-staging
+        name: Lunie-API-production
         file:  lunieapi.tgz
         fingerprint: ${{ secrets.DIGITAL_OCEAN_FINGERPRINT }}
         private_key: ${{ secrets.DO_PRIVATE_KEY }} 
