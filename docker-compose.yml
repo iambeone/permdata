@@ -3,19 +3,25 @@ services:
   lunieapi:
     image: lunieapi:latest
     container_name: lunieapi
-    restart: unless-stopped
+    restart_policy:
+        condition: on-failure
     networks:
        - general
     ports:
       - "4000:4000"
+    deploy:
+      replicas: 1
   caddy:
     image: abiosoft/caddy:0.11.0
     depends_on:
     - "lunieapi"
-    restart: unless-stopped
+    restart_policy:
+        condition: on-failure
     container_name: caddy
     networks:
        - general
+    deploy:
+      replicas: 1
     ports:
     - "443:443"
     volumes:
