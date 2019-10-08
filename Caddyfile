@@ -1,4 +1,5 @@
 staging-api.lunie.io {
+    tls self_signed
     proxy / lunieapi:4000 {
         websocket
     }
