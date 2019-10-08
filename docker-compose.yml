@@ -2,6 +2,9 @@ version: '3.6'
 services:
   lunieapi:
     image: lunieapi:latest
+    container_name: lunieapi
+    networks:
+       - general
     ports:
       - "4000:4000"
   caddy:
@@ -9,6 +12,9 @@ services:
     depends_on:
     - "lunieapi"
     restart: always
+    container_name: caddy
+    networks:
+       - general
     ports:
     - "443:443"
     volumes:
@@ -16,3 +22,5 @@ services:
     - caddy_certs:/root/.caddy
 volumes:
   caddy_certs:
+networks:
+  general:
