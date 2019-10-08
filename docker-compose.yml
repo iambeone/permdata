@@ -3,7 +3,7 @@ services:
   lunieapi:
     image: lunieapi:latest
     container_name: lunieapi
-    restart: "no"
+    restart: unless-stopped
     networks:
        - general
     ports:
@@ -12,7 +12,7 @@ services:
     image: abiosoft/caddy:0.11.0
     depends_on:
     - "lunieapi"
-    restart: "no"
+    restart: unless-stopped
     container_name: caddy
     networks:
        - general
