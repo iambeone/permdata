@@ -2,6 +2,8 @@ version: '3.6'
 services:
   lunieapi:
     image: lunieapi:latest
+    ports:
+      - "4000:4000"
   caddy:
     image: abiosoft/caddy:0.11.0
     depends_on:
