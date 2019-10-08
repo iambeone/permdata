@@ -28,4 +28,4 @@ jobs:
         image:  lunieapi
         file:  lunieapi.tgz
         fingerprint: ${{ secrets.DIGITAL_OCEAN_FINGERPRINT }}
-        private_key: ${{ secrets.DIGITAL_OCEAN_PRIVATE_KEY }} 
+        private_key: ${{ secrets.DO_PRIVATE_KEY  }} 
