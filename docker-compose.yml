@@ -1,16 +1,14 @@
 version: '3.6'
 services:
   lunieapi:
-    image: lunieapi
-    restart: always  
+    image: lunieapi:latest
   caddy:
     image: abiosoft/caddy:0.11.0
     depends_on:
     - "lunieapi"
     restart: always
     ports:
-    - "80:80"
-    - "4000:443"
+    - "443:443"
     volumes:
     - ./Caddyfile:/etc/Caddyfile
     - caddy_certs:/root/.caddy
