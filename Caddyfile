@@ -1,4 +1,4 @@
-staging-api.lunie.io:443 {
+staging-api.lunie.io {
     proxy / lunieapi:4000 {
         websocket
     }
