@@ -1,0 +1,32 @@
+version: '3.6'
+services:
+  lunieapi:
+    image: lunieapi:latest
+    container_name: lunieapi
+    restart: on-failure
+    networks:
+       - general
+    ports:
+      - "4000:4000"
+    deploy:
+      replicas: 1
+  caddy:
+    image: abiosoft/caddy:0.11.0
+    depends_on:
+    - "lunieapi"
+    restart: on-failure
+    container_name: caddy
+    networks:
+       - general
+    deploy:
+      replicas: 1
+    ports:    
+    - "80:80"
+    - "443:443"
+    volumes:
+    - ./Caddyfile.prod:/etc/Caddyfile
+    - caddy_certs:/root/.caddy
+volumes:
+  caddy_certs:
+networks:
+  general:
