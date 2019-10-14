@@ -27,4 +27,4 @@ jobs:
     - name: Installing Docker Compose
       run: ssh root@157.245.121.175 "sudo curl -L \"https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)\" -o /usr/local/bin/docker-compose; sudo chmod +x /usr/local/bin/docker-compose"
     - name: Run on Digital Ocean
-      run: ssh root@157.245.121.175 "docker image prune -a -f; docker load < lunieapi.tgz; docker container stop lunieapi;docker container stop caddy; docker container stop exporter; docker container prune -f; docker-compose -f docker-compose.prod.yml up --build -d"
+      run: ssh root@157.245.121.175 "docker image prune -a -f; docker load < lunieapi.tgz; docker container stop lunieapi;docker container stop caddy; docker container stop exporter; docker container prune -f; docker-compose -f docker-compose.yml up --build -d"
