@@ -16,6 +16,6 @@ COPY pm2.json .
 
 COPY index.js .
 
-CMD [ "pm2-runtime", "start", "pm2.json"]
+CMD [ "pm2-runtime", "start", "pm2.json", "--format"]
 
 EXPOSE 4200
