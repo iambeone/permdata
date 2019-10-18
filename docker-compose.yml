@@ -13,7 +13,7 @@ services:
     deploy:
       replicas: 1
     environment:
-      - HASURA_URL=https://staging-api.lunie.io/v1/graphql
+      - HASURA_URL=https://staging-db.lunie.io/v1/graphql
       - HASURA_ADMIN_KEY=lunie1234
   node-exporter:
     image: prom/node-exporter
