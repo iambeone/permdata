@@ -13,7 +13,7 @@ services:
     deploy:
       replicas: 1
     environment:
-      - HASURA_URL=$HASURA_URl
+      - HASURA_URL=$HASURA_URL
       - HASURA_ADMIN_KEY=$HASURA_ADMIN_KEY
   node-exporter:
     image: prom/node-exporter
